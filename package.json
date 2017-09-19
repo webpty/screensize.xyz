@@ -1,0 +1,9 @@
+{
+  "name": "getScreenSize",
+  "version": "0.0.1",
+  "author": "David Auffret",
+  "private": true,
+  "dependencies": {
+    "clipboard": "^1.7.1"
+  }
+}
