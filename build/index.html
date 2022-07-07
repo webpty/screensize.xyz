@@ -1,154 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Mobile size</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-icon-precomposed" href="icon.png">
-  <script src="clipboard.min.js"></script>
-  <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      background: #222;
-      font-family: sans-serif;
-    }
-    .full {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .size {
-      width: 200px;
-      height: auto;
-      padding: 10px;
-      border-radius: 10px;
-      background: #2199e2;
-      line-height: 35px;
-      font-size: 20px;
-      color: #000;
-      align-self: center;
-    }
-    .item {
-      width: 100%;
-      float: left;
-      text-align: left;
-    }
-    span {
-      font-size: 22px;
-      color: #FFF;
-      float: right;
-      text-align: right;
-    }
-    .width {
-      width: calc(100% - 10px);
-      height: 20px;
-      border-top: 1px solid #FFF;
-      position: absolute;
-      top: 30px;
-      left: 0;
-      text-align: center;
-      padding-top: 5px;
-      margin-left: 5px;
-      color: #FFF;
-    }
-    .height {
-      width: 60px;
-      height: calc(100% - 100px);
-      border-left: 1px solid #FFF;
-      position: absolute;
-      top: 0;
-      left: 30px;
-      padding: 90px 0 0 5px;
-      text-align: left;
-      margin-top: 5px;
-      vertical-align: middle;
-      color: #FFF;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="icon.png" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <meta name="msapplication-square512x512logo" content="icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Automatically get your current screen size and copy the information to your clipboard"
+    />
+    <meta name="apple-mobile-web-app-title" content="Screen Size" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#333333" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:url" content="https://screensize.xyz" />
+    <meta property="og:title" content="Screen Size" />
+    <meta property="og:description" content="Screen Size" />
+    <meta property="og:image" content="social-card.png" />
+    <title>Screen Size</title>
 
-    button {
-      width: 100%;
-      height: 35px;
-      border-radius: 8px;
-      padding: 0;
-      font-size: 22px;
-      text-transform: uppercase;
-      border: none;
-      margin-top: 20px;
-    }
-    button {
-      background: #fed024;
-    }
-    #success {
-      color: #fed024;
-      background: rgba(0,0,0,0);
-      display: none;
-    }
-    #error {
-      color: #F00;
-      background: rgba(0,0,0,0);
-      display: none;
-    }
-  </style>
-</head>
-<body>
-<div class='full'>
-  <div class='size'>
-    <div class='item'>Width: <span id='width'></span></div>
-    <div class='item'>Height: <span id='height'></span></div>
-    <div class='item'>Screen ratio: <span id='ratio'></span></div>
-    <div class='item'>Pixels ratio: <span id='pixels'></span></div>
-    <button class="btn" id="btn">Copy</button>
-    <button id='success'>Copied!!!</button>
-    <button id='error'>Error</button>
-  </div>
-</div>
-<div class='width' id='width2'></div>
-<div class='height' id='height2'></div>
-</body>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background: linear-gradient(145deg, #108dc7, #ef8e38);
+        font-family: sans-serif;
+      }
+      .full {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+        position: relative;
+      }
+      .size {
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        border-radius: 10px;
+        background: linear-gradient(145deg, #333, #111);
+        line-height: 35px;
+        font-size: 20px;
+        color: #aaa;
+        align-self: center;
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+      }
+      .item {
+        width: 100%;
+        float: left;
+        text-align: left;
+      }
+      span {
+        font-size: 22px;
+        color: #fff;
+        float: right;
+        text-align: right;
+      }
+
+      button {
+        width: 100%;
+        height: 35px;
+        border-radius: 8px;
+        padding: 0;
+        font-size: 22px;
+        text-transform: uppercase;
+        border: none;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      button {
+        background: #fed024;
+      }
+      button:hover {
+        background: #fe0024;
+      }
+      #success {
+        color: #fed024;
+        background: rgba(0, 0, 0, 0);
+        display: none;
+      }
+      #error {
+        color: #f00;
+        background: rgba(0, 0, 0, 0);
+        display: none;
+      }
+      .lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+        stroke: white;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+      svg {
+        stroke: white;
+        stroke-width: 4;
+        stroke-linecap: round;
+        fill: none;
+      }
+      .tb-arrows svg {
+        width: 20px;
+      }
+      .lr-arrows svg {
+        width: 10px;
+      }
+      .tb-arrows {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 2;
+      }
+      .lr-arrows {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        /* height: 20px; */
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="lines" width="100%" height="100%">
+      <line x1="0" y1="50%" x2="100%" y2="50%" />
+      <line x1="50%" y1="0" x2="50%" y2="100%" />
+    </svg>
+      <div class="tb-arrows">
+        <svg viewBox="0 0 40 20" class="arrow-t">
+          <polyline points="0,20 20,0 40,20 "/>
+        </svg>
+        <svg viewBox="0 0 40 20" class="arrow-b">
+          <polyline points="0,0 20,20 40,0 "/>
+        </svg>
+      </div>
+      <div class="lr-arrows">
+        <svg viewBox="0 0 20 40" class="arrow-l">
+          <polyline points="20,0 0,20 20,40 "/>
+        </svg>
+        <svg viewBox="0 0 20 40" class="arrow-r">
+          <polyline points="0,0 20,20 0,40 "/>
+        </svg>
+      </div>
+    <div class="full">
+      <div class="size">
+        <div class="item">Width: <span id="width"></span></div>
+        <div class="item">Height: <span id="height"></span></div>
+        <div class="item">Pixel ratio: <span id="pixels"></span></div>
+        <button class="btn" id="btn" onclick="copy()">Copy</button>
+        <button id="success">Copied!!!</button>
+        <button id="error">Error</button>
+      </div>
+    </div>
+  </body>
 </html>
 
 <script>
-    var width = 0
-    var height = 0
-    var ratio = 0
-    var pixels = 0
-    document.addEventListener("DOMContentLoaded", function(event) {
-        width = window.innerWidth
-        height = window.innerHeight
-        ratio = width / height
-        pixels = window.devicePixelRatio
+  function copy() {
+    const body = document.body
+    const textToCopy = `
+    width: ${window.innerWidth},
+    height: ${window.innerHeight},
+    pixels: ${window.devicePixelRatio}
+    `
+    const temp = document.createElement('textarea')
+    temp.type = 'text'
+    temp.value = textToCopy
+    body.appendChild(temp)
+    
+    temp.select()
+    document.execCommand('Copy')
 
-        document.getElementById('width2').innerHTML = width + ' px'
-        document.getElementById('height2').innerHTML = height + ' px'
+    document.body.removeChild(temp)
+  }
 
-        document.getElementById('width').innerHTML = width
-        document.getElementById('height').innerHTML = height
-        document.getElementById('ratio').innerHTML = ratio.toFixed(2)
-        document.getElementById('pixels').innerHTML = pixels
-    })
+  document.addEventListener('DOMContentLoaded', function (event) {
+    sizing()
+  })
 
-    var clipboard = new Clipboard('.btn', {
-        text: function() {
-            return "width: " + width + ", height: " + height + ", screen ratio: " + ratio.toFixed(2) + ", density ratio: " + pixels
-        }
-    });
-
-    clipboard.on('success', function(e) {
-        document.getElementById('btn').style.display = 'none'
-        document.getElementById('success').style.display = 'block'
-    });
-
-    clipboard.on('error', function(e) {
-        document.getElementById('btn').style.display = 'none'
-        document.getElementById('error').style.display = 'block'
-    });
+  function sizing() {
+    document.getElementById('width').innerHTML = window.innerWidth
+    document.getElementById('height').innerHTML = window.innerHeight
+    document.getElementById('pixels').innerHTML = window.devicePixelRatio
+  }
+  window.addEventListener('resize', function (event) {
+    sizing()
+    console.log('resized')
+  })
 </script>
