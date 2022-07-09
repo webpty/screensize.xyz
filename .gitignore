@@ -1,4 +1,41 @@
-.DS_Store
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+data
+pids
+logs
+results
+tmp
+
+# Build
+old
+
+# Coverage reports
+coverage
 storage
+
+# API keys and secrets
+.env
+
+# Dependency directory
 node_modules
-.prettierrc
+yarn-offline-mirror
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+

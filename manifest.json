@@ -1,0 +1,23 @@
+{
+  "name": "Screen Size Utility",
+  "short_name": "Screen Size",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#108dc7",
+  "theme_color": "#ef8e38",
+  "description": "Get and share your screen size and browser details",
+  "icons": [{
+    "src": "/src/images/favicon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }, {
+    "src": "/src/images/icon.png",
+    "sizes": "1000x1000",
+    "type": "image/png",
+    "purpose": "maskable"
+  }, {
+    "src": "/src/images/social-card.png",
+    "sizes": "1200x600",
+    "type": "image/png"
+  }]
+}
